@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "GUIDO SDD — Auth module test data. All values are read-only fixtures for SauceDemo. No production credentials here.",
+
+  "profiles": {
+    "standard_user": {
+      "username": "standard_user",
+      "password": "secret_sauce",
+      "expectedLandingUrl": "/inventory.html",
+      "expectedPageTitle": "Products",
+      "slaMaxMs": 3000
+    },
+    "locked_out_user": {
+      "username": "locked_out_user",
+      "password": "secret_sauce",
+      "expectedError": "Epic sadface: Sorry, this user has been locked out.",
+      "expectedErrorContains": "locked out",
+      "slaMaxMs": 3000
+    },
+    "wrong_password_user": {
+      "username": "standard_user",
+      "password": "wrong_password",
+      "expectedError": "Epic sadface: Username and password do not match any user in this service",
+      "expectedErrorContains": "Username and password do not match",
+      "slaMaxMs": 3000
+    },
+    "problem_user": {
+      "username": "problem_user",
+      "password": "secret_sauce",
+      "expectedLandingUrl": "/inventory.html",
+      "expectedPageTitle": "Products",
+      "knownDefects": ["broken-images", "wrong-item-names"],
+      "slaMaxMs": 3000
+    },
+    "performance_glitch_user": {
+      "username": "performance_glitch_user",
+      "password": "secret_sauce",
+      "expectedLandingUrl": "/inventory.html",
+      "expectedPageTitle": "Products",
+      "slaMaxMs": 10000,
+      "$comment": "Artificial server delay up to 5s — SLA intentionally relaxed"
+    },
+    "error_user": {
+      "username": "error_user",
+      "password": "secret_sauce",
+      "expectedLandingUrl": "/inventory.html",
+      "expectedPageTitle": "Products",
+      "knownDefects": ["random-api-errors"],
+      "slaMaxMs": 3000
+    }
+  },
+
+  "urls": {
+    "base": "https://www.saucedemo.com",
+    "login": "/",
+    "inventory": "/inventory.html",
+    "cart": "/cart.html",
+    "checkout_step_one": "/checkout-step-one.html",
+    "checkout_step_two": "/checkout-step-two.html",
+    "checkout_complete": "/checkout-complete.html"
+  },
+
+  "timeouts": {
+    "defaultSeconds": 5,
+    "slowUserSeconds": 10,
+    "pageLoadSeconds": 15
+  },
+
+  "validation": {
+    "emptyUsername": {
+      "expectedError": "Epic sadface: Username is required",
+      "expectedErrorContains": "Username is required"
+    },
+    "emptyPassword": {
+      "expectedError": "Epic sadface: Password is required",
+      "expectedErrorContains": "Password is required"
+    }
+  }
+}

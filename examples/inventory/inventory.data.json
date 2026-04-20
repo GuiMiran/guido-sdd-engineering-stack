@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "GUIDO SDD — Inventory module test data. SauceDemo reference fixtures.",
+
+  "products": {
+    "sauce_labs_backpack": {
+      "name": "Sauce Labs Backpack",
+      "slug": "sauce-labs-backpack",
+      "price": 29.99,
+      "priceFormatted": "$29.99",
+      "detailUrlContains": "/inventory-item.html"
+    },
+    "sauce_labs_bike_light": {
+      "name": "Sauce Labs Bike Light",
+      "slug": "sauce-labs-bike-light",
+      "price": 9.99,
+      "priceFormatted": "$9.99",
+      "detailUrlContains": "/inventory-item.html"
+    },
+    "sauce_labs_bolt_tshirt": {
+      "name": "Sauce Labs Bolt T-Shirt",
+      "slug": "sauce-labs-bolt-t-shirt",
+      "price": 15.99,
+      "priceFormatted": "$15.99",
+      "detailUrlContains": "/inventory-item.html"
+    },
+    "sauce_labs_fleece_jacket": {
+      "name": "Sauce Labs Fleece Jacket",
+      "slug": "sauce-labs-fleece-jacket",
+      "price": 49.99,
+      "priceFormatted": "$49.99",
+      "detailUrlContains": "/inventory-item.html"
+    },
+    "sauce_labs_onesie": {
+      "name": "Sauce Labs Onesie",
+      "slug": "sauce-labs-onesie",
+      "price": 7.99,
+      "priceFormatted": "$7.99",
+      "detailUrlContains": "/inventory-item.html"
+    },
+    "allthethings_tshirt": {
+      "name": "Test.allTheThings() T-Shirt (Red)",
+      "slug": "test.allthethings()-t-shirt-(red)",
+      "price": 15.99,
+      "priceFormatted": "$15.99",
+      "detailUrlContains": "/inventory-item.html"
+    }
+  },
+
+  "catalog": {
+    "totalProducts": 6,
+    "pricePattern": "^\\$\\d+\\.\\d{2}$"
+  },
+
+  "sort": {
+    "az": {
+      "value": "az",
+      "label": "Name (A to Z)",
+      "expectedOrder": [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Onesie",
+        "Test.allTheThings() T-Shirt (Red)"
+      ]
+    },
+    "za": {
+      "value": "za",
+      "label": "Name (Z to A)",
+      "expectedOrder": [
+        "Test.allTheThings() T-Shirt (Red)",
+        "Sauce Labs Onesie",
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Bolt T-Shirt",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Backpack"
+      ]
+    },
+    "lohi": {
+      "value": "lohi",
+      "label": "Price (low to high)",
+      "expectedOrder": [
+        "Sauce Labs Onesie",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt",
+        "Test.allTheThings() T-Shirt (Red)",
+        "Sauce Labs Backpack",
+        "Sauce Labs Fleece Jacket"
+      ],
+      "$comment": "Compare as decimal — string sort would misorder $9.99 vs $10.00+"
+    },
+    "hilo": {
+      "value": "hilo",
+      "label": "Price (high to low)",
+      "expectedOrder": [
+        "Sauce Labs Fleece Jacket",
+        "Sauce Labs Backpack",
+        "Sauce Labs Bolt T-Shirt",
+        "Test.allTheThings() T-Shirt (Red)",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Onesie"
+      ]
+    }
+  },
+
+  "cart_operations": {
+    "single_add": {
+      "product": "Sauce Labs Backpack",
+      "expectedBadge": 1
+    },
+    "multi_add_3": {
+      "products": [
+        "Sauce Labs Backpack",
+        "Sauce Labs Bike Light",
+        "Sauce Labs Bolt T-Shirt"
+      ],
+      "expectedBadge": 3
+    }
+  },
+
+  "product_detail": {
+    "target": "Sauce Labs Backpack",
+    "expectedUrlContains": "/inventory-item.html",
+    "expectedTitle": "Sauce Labs Backpack",
+    "expectedPrice": "$29.99"
+  },
+
+  "urls": {
+    "inventory": "/inventory.html",
+    "inventoryItem": "/inventory-item.html"
+  },
+
+  "timeouts": {
+    "defaultSeconds": 5,
+    "sortAnimationMs": 300
+  }
+}

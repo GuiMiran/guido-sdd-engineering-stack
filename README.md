@@ -165,12 +165,70 @@ GUIDO is designed for the AI-agentic era. The spec-first philosophy makes it uni
 
 ---
 
+## Ecosystem
+
+GUIDO is implemented across a set of interconnected repositories. Each has a distinct role:
+
+```text
+guido-sdd-engineering-stack      ← you are here — doctrine, architecture, standards
+         │
+         ├── spectra              ← agentic spec generation framework
+         │       Generates .feature + .context.md + .data.json from intent prompts
+         │
+         ├── guido-agentic-pipeline
+         │       Reference implementation: SpecFlow + Selenium + Allure + C#
+         │       Consumes specs from this repo's examples/
+         │
+         ├── guido-autonomous-runtime
+         │       6-agent orchestration system: orchestrator, spectra-curator,
+         │       guido-planner, builder, test-engineer, qa-governor, self-healer
+         │
+         └── mcp-selenium
+                 MCP server for Selenium — enables AI agents to drive browsers
+                 Extended with GUIDO engine bootstrap and traceability
+```
+
+| Repository | Role | Status |
+| --- | --- | --- |
+| [guido-sdd-engineering-stack](https://github.com/GuiMiran/guido-sdd-engineering-stack) | Doctrine + Standards + Examples | Active |
+| [spectra](https://github.com/GuiMiran/spectra) | Agentic spec framework | v0.1 |
+| [guido-agentic-pipeline](https://github.com/GuiMiran/guido-agentic-pipeline) | .NET reference implementation | Active |
+| [guido-autonomous-runtime](https://github.com/GuiMiran/guido-autonomous-runtime) | Multi-agent orchestration | Active |
+| [mcp-selenium](https://github.com/GuiMiran/mcp-selenium) | Browser automation for agents | Active |
+| [guido-sdd-migration-effort-scale](https://github.com/GuiMiran/guido-sdd-migration-effort-scale) | Maturity model | Active |
+
+---
+
+## Examples
+
+Working GUIDO Level 3 specs for SauceDemo — the reference implementation:
+
+```text
+examples/
+├── _global.context.md          ← shared stack rules and conventions
+├── auth/
+│   ├── login.feature           ← 6 scenarios: happy path, locked, wrong pwd, empty, edge cases
+│   ├── login.context.md        ← verified locators, profiles, generation rules
+│   └── login.data.json         ← 6 user profiles with SLAs
+├── inventory/
+│   ├── inventory.feature       ← 8 scenarios: display, sorting ×4, cart ops, logout
+│   ├── inventory.context.md    ← product slugs, sort values, PageObject API
+│   └── inventory.data.json     ← expected sort orders, cart operations
+└── checkout/
+    ├── checkout.feature        ← 12 scenarios: cart review, step 1 validation, price calc, confirm
+    ├── checkout.context.md     ← 4-page locator map, price parsing rules
+    └── checkout.data.json      ← verified totals, tax values, customer profiles
+```
+
+---
+
 ## Getting Started
 
 1. Read the [Architecture Overview](docs/ARCHITECTURE.md)
 2. Understand the [5 Layers](docs/layers/)
 3. Review the [Spec Quality Guide](docs/spec-quality.md)
-4. See a working implementation: [guido-agentic-pipeline](https://github.com/GuiMiran/guido-agentic-pipeline)
+4. Study the [Examples](examples/) — start with `auth/`, then `inventory/`, then `checkout/`
+5. See a working implementation: [guido-agentic-pipeline](https://github.com/GuiMiran/guido-agentic-pipeline)
 
 ---
 
