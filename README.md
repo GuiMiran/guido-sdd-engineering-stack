@@ -1,5 +1,8 @@
 # GUIDO SDD Engineering Stack
 
+[Agent entry](AGENTS.md) · [GUIDO SDD governance hub](https://github.com/GuiMiran/spectra/tree/main/docs/ecosystem)
+for shared responsibilities, version baselines and cross-repository traceability.
+
 > **G**overned · **U**nified · **I**ntent-Driven · **D**efinition-first · **O**utcomes
 
 A software quality engineering framework that defines how quality knowledge is **declared, executed, governed, deployed, and preserved** in modern software systems — including AI-agentic environments.
